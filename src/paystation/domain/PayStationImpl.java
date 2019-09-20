@@ -25,7 +25,7 @@ public class PayStationImpl implements PayStation {
     private int insertedSoFar;
     private int timeBought;
     private Map coinMap = new HashMap();
-    private boolean nickleBool = false;
+    private boolean nickelBool = false;
     private boolean dimeBool = false;
     private boolean quarterBool = false;
     
@@ -35,10 +35,10 @@ public class PayStationImpl implements PayStation {
 
         switch (coinValue) {
             case 5:
-                if(!nickleBool)
+                if(!nickelBool)
                 {
                     coinMap.put(1, 1);
-                    nickleBool = true;
+                    nickelBool = true;
                 }
                 else
                 {
@@ -83,6 +83,7 @@ public class PayStationImpl implements PayStation {
     @Override
     public Receipt buy() {
         Receipt r = new ReceiptImpl(timeBought);
+        r.showOnDisplay();
         reset();
         return r;
     }
@@ -90,15 +91,19 @@ public class PayStationImpl implements PayStation {
     @Override
     public Map<Integer, Integer> cancel() 
     {
-        Map tempMap =  new HashMap();
+        Map tempMap = new HashMap();
         tempMap.putAll(coinMap);
         reset();
+        
+        // Show on display the map of coins as well as the total coin value
+        showCancelValuesOnDisplay(tempMap);
+        
         return tempMap;
     }
     
     private void reset() {
         timeBought = insertedSoFar = 0;
-        nickleBool = false;
+        nickelBool = false;
         dimeBool = false;
         quarterBool = false;
         coinMap.clear();
@@ -110,5 +115,20 @@ public class PayStationImpl implements PayStation {
         int total = insertedSoFar;
         insertedSoFar = 0;
         return total;
+    }
+    
+    private void showCancelValuesOnDisplay(Map map) {
+        int nickelAmount = (int)map.get(1);
+        int dimeAmount = (int)map.get(2);
+        int quarterAmount = (int)map.get(3);
+        int totalAmount = (nickelAmount * 5)
+                + (dimeAmount * 10)
+                + (quarterAmount * 25);
+        
+        System.out.println("** Cancelled ** Amount Returned:");
+        System.out.println("Nickels: $" + nickelAmount);
+        System.out.println("Dime: $" + dimeAmount);
+        System.out.println("Quarter: $" + quarterAmount);
+        System.out.println("Total Amount: $" + totalAmount);
     }
 }

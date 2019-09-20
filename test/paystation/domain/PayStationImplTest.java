@@ -155,13 +155,6 @@ public class PayStationImplTest {
                 10, ps.readDisplay());
     }
 
-
-
-
-
-
-    
-    
     /**
      * Verify that the canceled entry does not add to the amount returned by
      * empty.
