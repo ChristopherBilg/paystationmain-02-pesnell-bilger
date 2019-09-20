@@ -117,6 +117,7 @@ public class PayStationImpl implements PayStation {
         return total;
     }
     
+    // TODO Only return the coins actually inserted
     private void showCancelValuesOnDisplay(Map map) {
         int nickelAmount = (int)map.get(1);
         int dimeAmount = (int)map.get(2);
