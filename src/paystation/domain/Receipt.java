@@ -21,4 +21,10 @@ public interface Receipt {
      * @return number of minutes parking time
      */
     public int value();
+    
+    /**
+     * Display the receipt for the time bought.
+     * Called when the buy() function is called.
+     */
+    public void showOnDisplay();
 }

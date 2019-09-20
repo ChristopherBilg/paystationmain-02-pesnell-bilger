@@ -24,4 +24,9 @@ public class ReceiptImpl implements Receipt {
     public int value() {
         return value;
     }
+    
+    @Override
+    public void showOnDisplay() {
+        System.out.println("** Receipt ** Time Bought: " + this.value + " minutes");
+    }
 }
