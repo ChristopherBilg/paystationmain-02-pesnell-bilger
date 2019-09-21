@@ -1,6 +1,7 @@
 package paystation.domain;
 
 import java.util.*;
+import paystation.domain.rates.RateStrategy;
 
 /**
  * Implementation of the pay station.
@@ -27,6 +28,29 @@ public class PayStationImpl implements PayStation {
     private boolean nickelBool = false;
     private boolean dimeBool = false;
     private boolean quarterBool = false;
+    private Towns currentTown = Towns.DEFAULT;
+
+    public void setTownString(String town) {
+        System.out.println(town);
+        
+        switch (town.toUpperCase()) {
+            case "ALPHATOWN":
+                System.out.println("Town set to Alphatown");
+                currentTown = Towns.ALPHATOWN;
+                break;
+            case "BETATOWN":
+                System.out.println("Town set to Betatown");
+                currentTown = Towns.BETATOWN;
+                break;
+            case "GAMMATOWN":
+                System.out.println("Town set to Gammatown");
+                currentTown = Towns.GAMMATOWN;
+                break;
+            default:
+                System.out.println("Town not recognized, setting to default...");
+                currentTown = Towns.DEFAULT;
+        }
+    }
 
     @Override
     public void addPayment(int coinValue)
@@ -61,7 +85,7 @@ public class PayStationImpl implements PayStation {
                 throw new IllegalCoinException("Invalid coin: " + coinValue);
         }
         insertedSoFar += coinValue;
-        timeBought = insertedSoFar / 5 * 2;
+        timeBought = currentTown.getRate().calculateTime(insertedSoFar);
     }
 
     @Override
