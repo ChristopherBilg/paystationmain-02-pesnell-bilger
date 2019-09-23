@@ -6,8 +6,6 @@
 package paystation.domain;
 
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -37,6 +35,8 @@ public class PayStationMain {
             if (admin.equalsIgnoreCase("Y")) {
                 System.out.println("Type 'Change' to change the current town");
             }
+            
+            System.out.println("Type 'Exit' to leave the paystation machine");
 
             String choice = scan.nextLine();
 
@@ -67,8 +67,11 @@ public class PayStationMain {
                     String newTown = scan.nextLine();
                     station.setTownString(newTown);
                     break;
+                case "EXIT":
+                    System.out.println("Exiting the PayStation interface.");
+                    return;
                 default:
-                    System.out.println("Option not recognized, exiting...");
+                    break;
             }
             System.out.println();
         }
