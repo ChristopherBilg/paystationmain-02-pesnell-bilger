@@ -17,6 +17,7 @@ public class PayStationMain {
         Scanner scan = new Scanner(System.in);
         PayStation station = new PayStationImpl();
         Boolean cont = true;
+        boolean adminMode = false;
 
         System.out.println("Welcome to this paystation");
 
@@ -34,6 +35,7 @@ public class PayStationMain {
 
             if (admin.equalsIgnoreCase("Y")) {
                 System.out.println("Type 'Change' to change the current town");
+                adminMode = true;
             }
             
             System.out.println("Type 'Exit' to leave the paystation machine");
@@ -63,9 +65,11 @@ public class PayStationMain {
                     station.cancel();
                     break;
                 case "CHANGE":
-                    System.out.println("Enter new town name:");
-                    String newTown = scan.nextLine();
-                    station.setTownString(newTown);
+                    if(adminMode) {
+                        System.out.println("Enter new town name:");
+                        String newTown = scan.nextLine();
+                        station.setTownString(newTown);
+                    }
                     break;
                 case "EXIT":
                     System.out.println("Exiting the PayStation interface.");
