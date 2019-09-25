@@ -1,5 +1,5 @@
 # PayStation - Rate Strategies
-**Insert UML Class Diagram here when completed!**
+![UML Diagram](Paystation.png)
 
 ## Requirements
 The requirements for this project were to take the basic skeleton of the Pay Station itself and add a user interface which will act as a physical representation of a single ticket machine. The technical requirements were to implement the UI (terminal), follow accurate TDD procedures, and to collaborate as a team of two. Communication and git "branches" were key to organizing this assignment. We implemented everything that was asked of us in the project details / description. All of our tests pass, follow TDD, and our main loop contains zero known bugs.
