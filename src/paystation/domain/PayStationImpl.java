@@ -103,12 +103,12 @@ public class PayStationImpl implements PayStation {
 
     @Override
     public Map<Integer, Integer> cancel() {
+        // Display the values in the current transaction cache
+        showCancelValuesOnDisplay(coinMap);
+        
         Map tempMap = new HashMap();
         tempMap.putAll(coinMap);
         reset();
-
-        // Show on display the map of coins as well as the total coin value
-        showCancelValuesOnDisplay(tempMap);
 
         return tempMap;
     }
@@ -137,20 +137,20 @@ public class PayStationImpl implements PayStation {
 
         if (nickelBool) {
             nickelAmount = (int) map.get(1);
-            System.out.println("Nickels: $" + nickelAmount);
+            System.out.println("Nickels: " + nickelAmount);
         }
         if (dimeBool) {
             dimeAmount = (int) map.get(2);
-            System.out.println("Dime: $" + dimeAmount);
+            System.out.println("Dime: " + dimeAmount);
         }
         if (quarterBool) {
             quarterAmount = (int) map.get(3);
-            System.out.println("Quarter: $" + quarterAmount);
+            System.out.println("Quarter: " + quarterAmount);
         }
         int totalAmount = (nickelAmount * 5)
                 + (dimeAmount * 10)
                 + (quarterAmount * 25);
 
-        System.out.println("Total Amount: $" + totalAmount);
+        System.out.println("Total Amount: " + totalAmount + " cents");
     }
 }
