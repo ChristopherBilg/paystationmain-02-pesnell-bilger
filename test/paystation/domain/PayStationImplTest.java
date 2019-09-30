@@ -158,11 +158,11 @@ public class PayStationImplTest {
     /**
      * Verify that the canceled entry does not add to the amount returned by
      * empty.
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     @Test
-    public void cancelShouldNotAddToEmpty() throws Exception
-    {
+    public void cancelShouldNotAddToEmpty() throws Exception {
         PayStationImpl instance = new PayStationImpl();
         int amountAdded = 25;
         instance.addPayment(amountAdded);
@@ -170,16 +170,16 @@ public class PayStationImplTest {
         instance.addPayment(amountAdded);
         int result = instance.empty();
         assertEquals(amountAdded, result);
-        
+
     }
-    
+
     /**
      * Very that the empty method resets the total to zero.
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     @Test
-    public void testEmptyZero() throws Exception
-    {
+    public void testEmptyZero() throws Exception {
         PayStationImpl instance = new PayStationImpl();
         int amountAdded = 10;
         instance.addPayment(amountAdded);
@@ -187,30 +187,30 @@ public class PayStationImplTest {
         int result = instance.empty();
         assertEquals(0, result);
     }
-    
+
     /**
      * Verify that cancel returns a map with the correct amount of coins for one
      * coin type.
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     @Test
-    public void test1CoinMapReturn() throws Exception
-    {
+    public void test1CoinMapReturn() throws Exception {
         PayStationImpl instance = new PayStationImpl();
         int amountAdded = 25;
         instance.addPayment(amountAdded);
         int result = instance.cancel().get(3);
         assertEquals(1, result);
     }
-    
+
     /**
-     * Verify that cancel returns a map with the correct amount of coins for
-     * all coin types.
-     * @throws Exception 
+     * Verify that cancel returns a map with the correct amount of coins for all
+     * coin types.
+     *
+     * @throws Exception
      */
     @Test
-    public void testNoCoinMapReturn() throws Exception
-    {
+    public void testNoCoinMapReturn() throws Exception {
         PayStationImpl instance = new PayStationImpl();
         int quarter = 25;
         int dime = 10;
@@ -226,14 +226,14 @@ public class PayStationImplTest {
         Map result = instance.cancel();
         assertEquals(answer, result);
     }
-    
+
     /**
      * Verify that cancel returns a map without keys when no coins are entered.
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     @Test
-    public void testMultipleCoinMapReturn() throws Exception
-    {
+    public void testMultipleCoinMapReturn() throws Exception {
         PayStationImpl instance = new PayStationImpl();
         int quarter = 25;
         int dime = 10;
@@ -249,14 +249,14 @@ public class PayStationImplTest {
         Map result = instance.cancel();
         assertEquals(answer, result);
     }
- 
+
     /**
      * Verify that cancel clears the map.
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     @Test
-    public void testCancelClearMap() throws Exception
-    {
+    public void testCancelClearMap() throws Exception {
         PayStationImpl instance = new PayStationImpl();
         int quarter = 25;
         int dime = 10;
@@ -270,14 +270,14 @@ public class PayStationImplTest {
         Map emptyMap = new HashMap();
         assertEquals(emptyMap, result);
     }
-    
+
     /**
      * Verify that buy clears the map.
-     * @throws Exception 
+     *
+     * @throws Exception
      */
     @Test
-    public void testBuyClearMap() throws Exception
-    {
+    public void testBuyClearMap() throws Exception {
         PayStationImpl instance = new PayStationImpl();
         int quarter = 25;
         int dime = 10;
@@ -291,6 +291,24 @@ public class PayStationImplTest {
         Map emptyMap = new HashMap();
         assertEquals(emptyMap, result);
     }
+
+    @Test
+    public void testTownStringAlpha() {
+        assertEquals("Town should set to Alphatown","Alphatown",ps.setTownString("alphatown"));
+    }
     
+    @Test
+    public void testTownStringBeta() {
+        assertEquals("Town should set to Betatown","Betatown",ps.setTownString("betatown"));
+    }
     
+    @Test
+    public void testTownStringGamma() {
+        assertEquals("Town should set to Gammatown","Gammatown",ps.setTownString("gammatown"));
+    }
+    
+    @Test
+    public void testTownStringUnknown() {
+        assertEquals("Town should set to default","default",ps.setTownString("unknown"));
+    }
 }

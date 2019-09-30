@@ -68,7 +68,11 @@ public class PayStationMain {
                     if(adminMode) {
                         System.out.println("Enter new town name:");
                         String newTown = scan.nextLine();
-                        station.setTownString(newTown);
+                        String townRet = station.setTownString(newTown);
+                        if (townRet.equalsIgnoreCase("default")) {
+                            System.out.println("Town not recognized, setting to default... ");
+                        }
+                        System.out.println("Town set to " + townRet + "...");
                     }
                     break;
                 case "EXIT":

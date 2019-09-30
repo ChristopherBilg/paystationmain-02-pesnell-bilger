@@ -1,7 +1,6 @@
 package paystation.domain;
 
 import java.util.*;
-import paystation.domain.rates.RateStrategy;
 
 /**
  * Implementation of the pay station.
@@ -30,25 +29,23 @@ public class PayStationImpl implements PayStation {
     private boolean quarterBool = false;
     private Towns currentTown = Towns.DEFAULT;
 
-    public void setTownString(String town) {
+    @Override
+    public String setTownString(String town) {
         System.out.println(town);
         
         switch (town.toUpperCase()) {
             case "ALPHATOWN":
-                System.out.println("Town set to Alphatown");
                 currentTown = Towns.ALPHATOWN;
-                break;
+                return "Alphatown";
             case "BETATOWN":
-                System.out.println("Town set to Betatown");
                 currentTown = Towns.BETATOWN;
-                break;
+                return "Betatown";
             case "GAMMATOWN":
-                System.out.println("Town set to Gammatown");
                 currentTown = Towns.GAMMATOWN;
-                break;
+                return "Gammatown";
             default:
-                System.out.println("Town not recognized, setting to default...");
                 currentTown = Towns.DEFAULT;
+                return "default";
         }
     }
 

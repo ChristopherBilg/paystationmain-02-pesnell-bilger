@@ -69,5 +69,5 @@ public interface PayStation {
      */
     public int empty();
     
-    public void setTownString(String town);
+    public String setTownString(String town);
 }
