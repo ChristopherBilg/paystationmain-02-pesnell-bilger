@@ -9,9 +9,11 @@ Our implementation of the three rate strategies was a mixture of the polymorphic
 ## Team Work
 The collaboration between the two of us consisted of text messages communicating our progress on respective branches. When we were finished with the implementation and testing of a certain branch or feature, we would push it to GitHub and then submit a pull request for the other person to look over, comment on, and then either accept and merge into 'master' or deny.
 
-Paul Pesnell: **Insert work done here**
+### Paul Pesnell:
+I worked first on building the RateStrategy interface to allow for that flexibility and code reuse. I then worked on an enum to hold the towns which further encompassed the rate strategies. I further worked on the implementation of the main method for interaction with the paystation. I also worked on building tests surrounding additional methods added to help with the functionality of the enum and other methods. I reviewed the pull requests of Chris to make sure that the methods at least visually matched their description and then would continue to run the new test suite whenever I was furthering the development.
 
-Chris Bilger: I implemented the functionality and testing of the ProgressiveRateStrategy and AlternatingRateStrategy classes. I also organize the functionality of the program into a separate package from the testing to keep associated files together. As well as that, I implemented the displaying of the cancel values and the receipt in the terminal.
+### Chris Bilger:
+I implemented the functionality and testing of the ProgressiveRateStrategy and AlternatingRateStrategy classes. I also organize the functionality of the program into a separate package from the testing to keep associated files together. As well as that, I implemented the displaying of the cancel values and the receipt in the terminal.
 
 As far as coding, it seemed more or less like we each submitted half of the code; however, we wanted to finish the project ahead of time so we were quick to push new features and testing. For the TDD side of the project, we each implemented the tests for our own produced code, and then we checked that the new code / tests didn't interfere with previously existing code / tests. There was a null-pointer exception that Paul found on Chris' commit; however, I (Chris) don't think that was an error with the implementation, but moreso the differences between our working environments.
 
