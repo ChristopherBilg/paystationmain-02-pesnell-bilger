@@ -35,53 +35,88 @@ public class PayStationMain {
 
             if (admin.equalsIgnoreCase("Y")) {
                 System.out.println("Type 'Change' to change the current town");
+                System.out.println("Type 'Empty' to empty out the pay station");
                 adminMode = true;
             }
-            
+
             System.out.println("Type 'Exit' to leave the paystation machine");
 
             String choice = scan.nextLine();
 
             switch (choice.toUpperCase()) {
                 case "DEPOSIT":
-                    System.out.println("Insert coin value (5, 10, 25)");
-                    int val = scan.nextInt();
-                    scan.nextLine();
-                     {
-                        try {
-                            station.addPayment(val);
-                        } catch (IllegalCoinException ex) {
-                            System.out.println(ex.getMessage());
-                        }
-                    }
+                    deposit(scan, station);
                     break;
                 case "DISPLAY":
-                    System.out.println("Current time purchased: " + station.readDisplay());
+                    display(station);
                     break;
                 case "BUY":
-                    station.buy();
+                    buy(station);
                     break;
                 case "CANCEL":
-                    station.cancel();
+                    cancel(station);
                     break;
                 case "CHANGE":
-                    if(adminMode) {
-                        System.out.println("Enter new town name:");
-                        String newTown = scan.nextLine();
-                        String townRet = station.setTownString(newTown);
-                        if (townRet.equalsIgnoreCase("default")) {
-                            System.out.println("Town not recognized, setting to default... ");
-                        }
-                        System.out.println("Town set to " + townRet + "...");
+                    if (adminMode) {
+                        change(scan, station);
+                    }
+                    break;
+                case "EMPTY":
+                    if (adminMode) {
+                        empty(station);
                     }
                     break;
                 case "EXIT":
-                    System.out.println("Exiting the PayStation interface.");
+                    exit();
                     return;
                 default:
                     break;
             }
             System.out.println();
         }
+    }
+
+    private static void deposit(Scanner scan, PayStation station) {
+        System.out.println("Insert coin value (5, 10, 25)");
+        int val = scan.nextInt();
+        scan.nextLine();
+        {
+            try {
+                station.addPayment(val);
+            } catch (IllegalCoinException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+    }
+
+    private static void display(PayStation station) {
+        System.out.println("Current time purchased: " + station.readDisplay());
+    }
+
+    private static void buy(PayStation station) {
+        station.buy();
+    }
+
+    private static void cancel(PayStation station) {
+        station.cancel();
+    }
+
+    private static void change(Scanner scan, PayStation station) {
+        System.out.println("Enter new town name:");
+        String newTown = scan.nextLine();
+        String townRet = station.setTownString(newTown);
+        if (townRet.equalsIgnoreCase("default")) {
+            System.out.println("Town not recognized, setting to default... ");
+        }
+        System.out.println("Town set to " + townRet + "...");
+    }
+
+    private static void empty(PayStation station) {
+        station.empty();
+        System.out.println("The Pay Station has been emptied.");
+    }
+
+    private static void exit() {
+        System.out.println("Exiting the PayStation interface.");
     }
 }
